@@ -6,6 +6,16 @@ from .solution import *
 def init_random(lb, ub, dimension):
     return np.random.uniform(lb, ub, dimension)
     
+def init_zero(lb, ub, dimension):
+    return np.zeros(dimension)
+
+def init_small_random(x, f, dimension):
+    return np.random.uniform(-f, +f, dimension)
+
+#velocity initialization
+def initv_half_dif(x, lb, ub, dimension):
+    return (np.random.uniform(lb, ub, dimension) - x)/2
+    
 ### SELECTION METHODS (INPUT) ###
 def select_random(X, n=1):
     ''' Selects n exclusively and randomly candidate solutions from X for each Xi in X
@@ -480,6 +490,19 @@ def repair_reflect(x, lb, ub):
 
     return u
 
+#repair velocity
+def repair_v_zero(v, x, x1, lb, ub):
+    u = np.array([xi for xi in x])
+    mask = (u<lb) + (u>ub)
+    
+    w = np.array([vi for vi in v])
+    w[mask] = 0
+
+    return w
+    
+def repair_v_diff(v, x, x1, lb, ub):
+    return x1-x
+    
 ### KEEP-RULE / UPDATE-RULE ###
 ## REPLACE IF IMPROVED
 def replace_if_best(X1, X2):
