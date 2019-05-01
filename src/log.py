@@ -1,13 +1,19 @@
 import os
 
 class Log(object):
-    if not os.path.isdir("./results"):
-        os.mkdir("./results")
-
-    def __init__(self, exp_name, sep=",", end="\n"):
-        self._path = Log.mkdir("./results/"+exp_name)
+    def __init__(self, exp_name, exp_name2, sep=",", end="\n"):
+        exp_name = str(exp_name)
+        exp_name2 = str(exp_name2)
     
-        self._file = open(self._path+"/log.txt", 'w') #nfe, count_repair, best_fitness
+        if not os.path.isdir("./results"):
+            os.mkdir("./results")
+    
+        if not os.path.isdir("./results/"+exp_name):
+            os.mkdir("./results/"+exp_name)
+        
+        self._path = "./results/"+exp_name+"/"
+    
+        self._file = open(self._path+exp_name2+".txt", 'w') #nfe, count_repair, best_fitness
         self._sep  = sep
         self._end  = end
 

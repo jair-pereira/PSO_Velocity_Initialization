@@ -1,7 +1,7 @@
 from src import *
 def pso(exp_name, n, my_func, bounds, dimension, max_nfe, w, c1, c2, repair_x, repair_v, init_v):
     ## log init ##
-    log = Log("PSO_"+exp_name)
+    log = Log("PSO_"+str(exp_name), my_func.id)
     
     ## set problem ##
     Solution.setProblem(my_func, bounds, dimension, maximize=False)
