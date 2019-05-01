@@ -13,7 +13,7 @@ class Solution(object):
         Solution.nfe       = 0
         Solution.other_stop_condition = 0
         #common attributes
-        Solution.best      = Non
+        Solution.best      = None
         Solution.gbest     = None
         
         Solution.sign = 1 if Solution.maximize else -1
@@ -23,16 +23,6 @@ class Solution(object):
         Solution.evaluate = Solution._evaluate
         Solution.count_repair = 0
         
-    @staticmethod
-    def setLogger(Log):
-        Solution._log     = Log
-        Solution.evaluate = Solution._evaluate_log
-        
-    @staticmethod
-    def closeLogger():
-        Solution._log.close()
-        Solution._log     = None
-        Solution.evaluate = Solution._evaluate
     
     @staticmethod
     def initialize(n):
@@ -73,17 +63,19 @@ class Solution(object):
         Solution.nfe += 1
         return Solution.function(self.x)
         
-    def _evaluate_log(self):
-        fitness = self._evaluate()
-        Solution._log(Solution.nfe, fitness)
-        return fitness
-        
     # PSO
     def updatePBest(self):
         if(self.pbest == {} or self.getFitness() >= self.pbest['fitness']):
             self.pbest['x']       = self.x
             # self.pbest['fitness'] = self.getFitness()
             self.pbest['fitness'] = self.fitness
+            
+    @staticmethod
+    def updateBest(Xi):
+        if(Solution.best == None or Xi >= Solution.best):
+            Solution.best  = copy.deepcopy(Xi)
+            Solution.gbest = Solution.best
+        return
         
     @staticmethod
     def repair_x(x, lb, ub):
@@ -95,12 +87,7 @@ class Solution(object):
         #this method should be replaced on the fly
         return v
     
-    @staticmethod
-    def updateBest(Xi):
-        if(Solution.best == None or Xi >= Solution.best):
-            Solution.best  = copy.deepcopy(Xi)
-            Solution.gbest = Solution.best
-        return
+
         
     @staticmethod
     def print(sep="\n"):

@@ -77,7 +77,7 @@ def repair_random(x, lb, ub):
     return u
    
 #repair velocity
-def repair_v_zero(v, x, x1, lb, ub):
+def repairv_zero(v, x, x1, lb, ub):
     u = np.array([xi for xi in x])
     mask = (u<lb) + (u>ub)
     
@@ -86,5 +86,5 @@ def repair_v_zero(v, x, x1, lb, ub):
 
     return w
     
-def repair_v_diff(v, x, x1, lb, ub):
+def repairv_diff(v, x, x1, lb, ub):
     return x1-x
