@@ -13,8 +13,7 @@ class Solution(object):
         Solution.nfe       = 0
         Solution.other_stop_condition = 0
         #common attributes
-        Solution.best      = None
-        Solution.worst     = None
+        Solution.best      = Non
         Solution.gbest     = None
         
         Solution.sign = 1 if Solution.maximize else -1
@@ -48,11 +47,14 @@ class Solution(object):
         self.velocity = np.zeros(Solution.dimension)
         
     def setX(self, x):
-        self.x        = Solution.repair_x(x, *Solution.bounds)
+        self.x = Solution.repair_x(x, *Solution.bounds)
+        
         if(np.array_equal(self.x, x)):
             Solution.count_repair += 1
             self.velocity = Solution.repair_v(self.velocity, self.x, x, *Solution.bounds)            
+            
         self.clearFitness()
+        return
         
     def setVelocity(self, v):
         self.velocity = v
@@ -61,7 +63,6 @@ class Solution(object):
         if self.fitness == None:
             self.fitness = self.evaluate()
             Solution.updateBest(self)
-            Solution.updateWorst(self)
             self.updatePBest()
         return self.fitness
     
@@ -100,12 +101,6 @@ class Solution(object):
             Solution.best  = copy.deepcopy(Xi)
             Solution.gbest = Solution.best
         return
-        
-    @staticmethod
-    def updateWorst(Xi):
-        if(Solution.worst == None or Xi <= Solution.worst):
-            Solution.worst  = copy.deepcopy(Xi)
-        return    
         
     @staticmethod
     def print(sep="\n"):

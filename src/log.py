@@ -7,15 +7,15 @@ class Log(object):
     def __init__(self, exp_name, sep=",", end="\n"):
         self._path = Log.mkdir("./results/"+exp_name)
     
-        self._file = open(self._path+"/log.txt", 'w')
+        self._file = open(self._path+"/log.txt", 'w') #nfe, count_repair, best_fitness
         self._sep  = sep
         self._end  = end
+
+    def __call__(self, information):
+        self.write(information)
     
-    def __call__(self, nfe, fitness):
-        self.write_evaluations(nfe, fitness)
-    
-    def write_evaluations(self, nfe, fitness):
-        self._file.write(str(nfe)+self._sep+str(fitness)+self._end)
+    def write(self, information):
+        self._file.write(self._sep.join(map(str,information))+self._end)
         self._file.flush()
         
     def close(self):
