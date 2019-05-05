@@ -1,0 +1,3 @@
+suite = 'bbob', funcId = 8, DIM = 10, Precision = 1.000e-008, algId = 'ALG', coco_version = '', logger = 'bbob', data_format = 'bbob-new2'
+%
+data_f8/bbobexp_f8_DIM10_i72.dat, 72:10000|7.5e+000, 73:10000|2.0e+001, 74:10000|9.1e-001, 75:10000|6.6e+000, 76:10000|4.2e+000, 77:10000|4.5e+000, 78:10000|6.1e+000, 79:10000|7.6e+000, 80:10000|7.4e+000
