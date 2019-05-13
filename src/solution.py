@@ -39,7 +39,7 @@ class Solution(object):
     def setX(self, x):
         self.x = Solution.repair_x(x, *Solution.bounds)
         
-        if(np.array_equal(self.x, x)):
+        if(not np.array_equal(self.x, x)):
             Solution.count_repair += 1
             self.velocity = Solution.repair_v(self.velocity, self.x, x, *Solution.bounds)            
             
