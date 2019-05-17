@@ -38,7 +38,7 @@ def main(args):
     suite = cocoex.Suite("bbob", "", "function_indices:1,8,13,15,20 dimensions:10 instance_indices:1-6")
     
     ## nfe ##
-    nfe = 1e+6
+    nfe = 5e+4
     
     ## loop over problems ##
     fitness = 0
