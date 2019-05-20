@@ -1,0 +1,13 @@
+#!/bin/bash
+
+nohup python pso_v.py --n 800 --w 0.54 --c1 0.03 --c2 1.58 --m 1 > pso1.txt &
+nohup python pso_v.py --n 1600 --w 0.43 --c1 0.00 --c2 1.64 --m 2 > pso2.txt &
+nohup python pso_v.py --n 800 --w 0.53 --c1 0.04 --c2 1.87 --m 3 > pso3.txt &
+nohup python pso_v.py --n 1600 --w 0.29 --c1 0.01 --c2 1.64 --m 4 > pso4.txt &
+nohup python pso_v.py --n 800 --w 0.58 --c1 0.02 --c2 1.42 --m 5 > pso5.txt &
+nohup python pso_v.py --n 1600 --w 0.50 --c1 0.00 --c2 1.44 --m 6 > pso6.txt &
+nohup python pso_v.py --n 800 --w 0.69 --c1 0.01 --c2 1.13 --m 7 > pso7.txt &
+nohup python pso_v.py --n 800 --w 0.58 --c1 0.00 --c2 1.84 --m 8 > pso8.txt &
+
+
+exit 0
